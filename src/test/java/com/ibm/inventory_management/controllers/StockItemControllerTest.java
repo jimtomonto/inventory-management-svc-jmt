@@ -1,9 +1,14 @@
 package com.ibm.inventory_management.controllers;
 
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import com.ibm.inventory_management.services.StockItemApi;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,12 +20,15 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 @DisplayName("StockItemController")
 public class StockItemControllerTest {
     StockItemController controller;
+    StockItemApi service;
 
     MockMvc mockMvc;
 
     @BeforeEach
     public void setup() {
-        controller = spy(new StockItemController());
+        service = mock(StockItemApi.class);
+
+        controller = spy(new StockItemController(service));
 
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }

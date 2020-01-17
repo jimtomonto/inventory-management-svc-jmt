@@ -26,12 +26,9 @@ public class SwaggerDocket {
 
     @Bean
     public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(buildApiRequestHandler())
-                .paths(PathSelectors.any())
-                .build()
-                .apiInfo(buildApiInfo());
+        // JMT Removed .paths(PathSelectors.any())
+        return new Docket(DocumentationType.SWAGGER_2).select().apis(buildApiRequestHandler())
+                .paths(PathSelectors.regex(".*stock-item.*")).build().apiInfo(buildApiInfo());
     }
 
     protected Predicate<RequestHandler> buildApiRequestHandler() {
@@ -47,14 +44,8 @@ public class SwaggerDocket {
     }
 
     protected ApiInfo buildApiInfo() {
-        return new ApiInfo(
-                config.getTitle(),
-                config.getDescription(),
-                config.getVersion(),
-                config.getTermsOfServiceUrl(),
-                buildContact(),
-                config.getLicense(),
-                config.getLicenseUrl(),
+        return new ApiInfo(config.getTitle(), config.getDescription(), config.getVersion(),
+                config.getTermsOfServiceUrl(), buildContact(), config.getLicense(), config.getLicenseUrl(),
                 config.getVendorExtensions());
     }
 
