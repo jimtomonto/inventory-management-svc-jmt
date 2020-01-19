@@ -16,6 +16,7 @@ public class StockItemService implements StockItemApi {
                 new StockItem("2").withName("Item 2").withStock(150).withPrice(100.0).withManufacturer("Insignia"),
                 new StockItem("3").withName("Item 3").withStock(10).withPrice(1000.0).withManufacturer("Panasonic"),
                 new StockItem("4").withName("Item 4").withStock(10).withPrice(1000.0).withManufacturer("Apple"),
-                new StockItem("5").withName("Item 5").withStock(10).withPrice(1000.0).withManufacturer("Microsoft"));
+                new StockItem("5").withName("Item 5").withStock(10).withPrice(1000.0)
+                        .withManufacturer("From SVC Backend - Microsoft"));
     }
 }
